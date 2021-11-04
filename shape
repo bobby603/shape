@@ -1,0 +1,134 @@
+#include <iostream>
+using namespace std;
+
+
+class Output
+{
+public:
+  void print ()
+  {
+    //does not contain anything only to overload.
+  }
+};
+
+
+
+
+class Polygon
+{
+public:
+  int length;
+  int width;
+
+    Polygon (int l, int w){			
+    //set all values by creathing constructors
+    length = l;
+    width = w;
+  }
+  
+  void setValues(int a, int b){
+      length=a;
+      width=b;
+    }
+  
+};
+
+
+
+class Square:public Polygon, public Output//class Square
+{
+
+public:
+
+  int diagonal;
+  
+    Square (int a):Polygon (a, a){
+    length = a;
+    width = a;
+    diagonal = a * 1.414 ;	//set diagonal for later use
+  }                         //set all values
+
+  double area (){
+    return length * width;	//area
+  }
+
+  void print (){
+    cout << "The Length: " << length  << "\n";
+    cout << "The Width: "  << width   << "\n";
+    cout << "The Area: "   << area () << "\n";
+  }
+};
+
+
+
+
+class Triangle:public Polygon, public Output//class Triangle
+{
+
+public:
+
+  string type;
+  Triangle (string s, int a, int b):Polygon (a, b){
+    length = a;
+    width = b;
+  }
+
+
+  double area (){
+    return length * width *0.5;
+  }
+
+
+  void print ()
+  {
+    cout << "The Length: " << length  << "\n";
+    cout << "The Width: "  << width   << "\n";
+    cout << "The Area: "   << area () << "\n";
+  }
+
+};				//classes end with a semicolon.
+
+
+
+int main() {
+
+
+  int i=1;// i and ii only use to operate main, EX you wants to run again.
+  int ii=0;
+  while(i==1){
+    cout<<"Hello and welcome to Shapes! Type the number 1 to create a Square; type the number 2 to create a Triangle.\n";
+    cin>>ii;//input shape thing.
+    if(ii==1){
+      //squareing it
+      cout<<"What's the side length of the square?\n";
+      int a;
+      cin>>a;
+      Square sqr(a);//creates a new square with side length a.
+      cout<<"Here is your information for the square.\n";
+      sqr.print();//prints info.
+
+    }
+
+    if(ii==2){
+      //creating a triangle
+      cout<<"What's the type of triangle you want to create? (Isosceles, scalene, or equilateral, enter 1,2,3 to represent)\n";
+      cout << "\n (btw it does not make any difference) \n ";
+      string ss;
+      cin>>ss;
+      cout<<"Please Enter The Base Length\n";
+      int h;
+      cin>>h;
+      cout<<"Now The Height?\n";
+      int t;
+      cin>>t;
+      Triangle tri(ss, 0, 0);//creates the new triangle after asking the user for input. The values are set in the next line.
+      tri.setValues(h, t);
+      cout<<"All the info of the triangle will display here\n";
+      tri.print();
+    }
+    cout<<"Wanna run the program again? Enter 1 to run again, other for no.\n";
+    cin>>i;
+  }
+
+
+}
